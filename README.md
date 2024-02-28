@@ -51,8 +51,9 @@ $ python Run.py
 - Your withdrawal nominal is so small that it cannot reach your crypto wallet.
 
 ### Warning?!
-This tools was created only to make it easier for users to claim XRP tokens on the FaucetEarner service. You must use this tools carefully!
+This tools only serves to simplify the process of claiming XRP tokens on FaucetEarner and does not guarantee successful claims or any profits. Please use this tools with caution and always follow FaucetEarner's terms of service.
 
+##
 ```python
 print("Thank You!")
 ```
