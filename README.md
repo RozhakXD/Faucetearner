@@ -40,9 +40,9 @@ $ python Run.py
 ```
 
 ### Failed to claim XRP tokens?
+- Maybe because the website has cloudflare, reCAPTCHA or hCaptcha problems.
 - Maybe your faucetearner account cookies have expired or are no longer valid.
 - Because the next claim deadline has not yet ended, you can wait.
-- Maybe because the website has cloudflare, reCAPTCHA or hCaptcha problems.
 - You can try it manually first then log in again into this tools.
 
 ### Why is the withdrawal not arriving?
