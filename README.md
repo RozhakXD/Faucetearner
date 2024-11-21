@@ -1,6 +1,6 @@
 # FREE XRP TOKEN - WITH TERMUX
 <div align="center">
-  <img src="Data/Faucetearner.jpeg">
+  <img src="Penyimpanan/Faucetearner.jpeg">
   <br>
   <br>
   <p>
