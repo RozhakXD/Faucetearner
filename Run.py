@@ -4,9 +4,9 @@ try:
     from rich.console import Console
     import requests, time, os, json
     from rich.panel import Panel
-    from rich import print
+    from rich import print as printf
 except (Exception) as e:
-    exit(f"[Error]{str(e).capitalize()}!")
+    exit(f"Error: {str(e).capitalize()}!")
 
 COOKIES, SUKSES, GAGAL, XRP = {
     "KEY": None
@@ -16,13 +16,13 @@ COOKIES, SUKSES, GAGAL, XRP = {
 
 def BANNER():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(Panel("""[bold red]●[bold yellow] ●[bold green] ●[/]
+    printf(Panel(r"""[bold red]●[bold yellow] ●[bold green] ●[/]
 [bold red]    ______                      __                 
    / ____/___ ___  __________  / /____  ____ ______
   / /_  / __ `/ / / / ___/ _ \/ __/ _ \/ __ `/ ___/
  / __/ / /_/ / /_/ / /__/  __/ /_/  __/ /_/ / /    
 [bold white]/_/    \__,_/\__,_/\___/\___/\__/\___/\__,_/_/     
-        [italic white on red]Free XRP Tokens - Coded by Rozhak""", style="bold bright_black", width=56))
+        [bold white on red]Free XRP Tokens - Coded by Rozhak""", style="bold bright_black", width=56))
 
 class CLAIM:
 
@@ -69,25 +69,25 @@ class CLAIM:
                 XRP.update({
                     "KEY": f"0.{self.XRP_earn}"
                 })
-                print(Panel(f"[italic green]Congratulations on receiving {XRP['KEY']} XRP, It has been deposited into your account balance and can be viewed on the dashboard!!", style="bold bright_black", width=56, title=">>> Sukses <<<"))
+                printf(Panel(f"[italic green]Congratulations on receiving {XRP['KEY']} XRP, It has been deposited into your account balance and can be viewed on the dashboard!!", style="bold bright_black", width=56, title="[bold bright_black]>>> Sukses <<<"))
                 for sleep in range(60, 0, -1):
-                    print(f"[bold bright_black]   ╰─>[bold green] {sleep}[bold white]/[bold green]{XRP['KEY']}[bold white] Sukses:-[bold green]{len(SUKSES)}[bold white] Gagal:-[bold red]{len(GAGAL)}     ", end='\r')
+                    printf(f"[bold bright_black]   ╰─>[bold green] {sleep}[bold white]/[bold green]{XRP['KEY']}[bold white] Sukses:-[bold green]{len(SUKSES)}[bold white] Gagal:-[bold red]{len(GAGAL)}     ", end='\r')
                     time.sleep(1.0)
                 SUKSES.append(f'{response2.text}')
                 return ("0_0")
             elif 'you have already' in str(response2.text).lower():
-                print(Panel(f"[italic red]You have already claimed, please wait for the next wave!", style="bold bright_black", width=56, title=">>> Gagal <<<"))
+                printf(Panel(f"[bold red]You have already claimed, please wait for the next wave!", style="bold bright_black", width=56, title="[bold bright_black]>>> Gagal <<<"))
                 time.sleep(30)
                 GAGAL.append(f'{response2.text}')
                 return ("0_-") # You have already claimed, please wait for the next wave!
-            else:
-                print(Panel(f"[italic red]{str(response2.text).capitalize()}!", style="bold bright_black", width=56, title=">>> Error <<<"))
+            else: # Please login again
+                printf(Panel(f"[bold red]{str(response2.text).capitalize()}!", style="bold bright_black", width=56, title="[bold bright_black]>>> Error <<<"))
                 return ("-_-")
 
     def CHECK_LOGIN(self):
         BANNER()
         if COOKIES["KEY"] == None:
-            print(Panel(f"[italic white]Masukkan cookies akun faucetearner anda dan pastikan akun faucetearner anda sudah dalam keadaan login!", style="bold bright_black", width=56, title=">>> Cookies Faucetearner <<<", subtitle="╭──────", subtitle_align="left"))
+            printf(Panel(f"[bold white]Masukkan cookies akun faucetearner anda dan pastikan akun faucetearner anda sudah dalam keadaan login!", style="bold bright_black", width=56, title="[bold bright_black]>>> Cookies Faucetearner <<<", subtitle="[bold bright_black]╭──────", subtitle_align="left"))
             self.cookies = Console().input("[bold bright_black]   ╰─> ")
             if len(self.cookies) != 0:
                 COOKIES.update({
@@ -95,7 +95,7 @@ class CLAIM:
                 })
                 return ("0_0")
             else:
-                print(Panel(f"[italic red]Pengisian cookies harus dilakukan dengan benar dan valid. Data yang kosong atau tidak sesuai dapat menyebabkan proses selanjutnya terhambat!", style="bold bright_black", width=56, title=">>> Tidak Boleh Kosong <<<"))
+                printf(Panel(f"[bold red]Pengisian cookies harus dilakukan dengan benar dan valid. Data yang kosong atau tidak sesuai dapat menyebabkan proses selanjutnya terhambat!", style="bold bright_black", width=56, title="[bold bright_black]>>> Tidak Boleh Kosong <<<"))
                 exit()
         else:
             return ("0_0")
@@ -103,28 +103,28 @@ class CLAIM:
     def XRP(self):
         try:
             self.CHECK_LOGIN()
-            print(Panel(f"[italic white]Penambangan token XRP sedang dilakukan. Anda dapat menghentikan prosesnya kapan saja dengan menekan tombol CTRL + Z.", style="bold bright_black", width=56, title=">>> Catatan <<<"))
+            printf(Panel(f"[bold white]Penambangan token XRP sedang dilakukan. Anda dapat menghentikan prosesnya kapan saja dengan menekan tombol CTRL + Z.", style="bold bright_black", width=56, title="[bold bright_black]>>> Catatan <<<"))
             while True:
                 try:
                     self.EXECUTION()
                 except (RequestException):
-                    print("[bold bright_black]   ╰─>[bold red] KONEKSI BERMASALAH!", end='\r')
+                    printf("[bold bright_black]   ╰─>[bold red] KONEKSI BERMASALAH!", end='\r')
                     time.sleep(10.5)
                     continue
                 except (KeyboardInterrupt):
-                    print("                                                       ", end='\r')
+                    printf("                                                       ", end='\r')
                     time.sleep(2.5)
                     continue
         except (Exception) as e:
-            print(Panel(f"[italic red]{str(e).capitalize()}!", style="bold bright_black", width=56, title=">>> Error <<<"))
+            printf(Panel(f"[bold red]{str(e).capitalize()}!", style="bold bright_black", width=56, title="[bold bright_black]>>> Error <<<"))
             exit()
 
 if __name__ == '__main__':
     try:
-        if os.path.exists("Data/Subscribe.json") == False:
-            youtube_url = json.loads(requests.get('https://raw.githubusercontent.com/RozhakXD/Faucetearner/main/Data/Youtube.json').text)['Link']
+        if os.path.exists("Penyimpanan/Subscribe.json") == False:
+            youtube_url = json.loads(requests.get('https://raw.githubusercontent.com/RozhakXD/Faucetearner/main/Penyimpanan/Youtube.json').text)['Link']
             os.system(f'xdg-open {youtube_url}')
-            with open('Data/Subscribe.json', 'w') as w:
+            with open('Penyimpanan/Subscribe.json', 'w') as w:
                 w.write(json.dumps({
                     "Status": True
                 }))
